@@ -1,0 +1,31 @@
+<ion-content [fullscreen]="true">
+  <ion-row>
+    <ion-col>
+      <ion-list>
+        <ion-item-sliding *ngFor="let item of importantTasks; let i=index">
+          <ion-item-options side="start">
+            <ion-item-option color="success" (click)="completeImportantTask(i)">
+              <ion-icon name="checkmark-done-outline"></ion-icon>
+            </ion-item-option>
+            <ion-item-option color="warning" (click)="sendToNormalTask(i)">
+              <ion-icon name="star-outline"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+          <ion-item>
+            <ion-label>{{item}}</ion-label>
+          </ion-item>
+          <ion-item-options side="end" (ionSwipe)="removeImportantTask(i)">
+            <ion-item-option expandable color="danger">
+              <ion-icon name="trash-outline"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-label *ngIf="importantTasks.length < 1">No Hay Tareas Importantes</ion-label>
+    </ion-col>
+  </ion-row>
+</ion-content>
